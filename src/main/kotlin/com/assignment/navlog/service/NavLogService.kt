@@ -9,6 +9,7 @@ import com.assignment.navlog.repository.RouteRepository
 import com.assignment.navlog.utils.toDouble
 import com.assignment.navlog.utils.toISO8601Duration
 import com.assignment.navlog.utils.toInt
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import kotlin.time.Duration
@@ -38,7 +39,7 @@ class NavLogService(
     }
 
     fun getNavLogFor(id: Long): NavigationLog {
-        return routeRepository.findById(id).map { route ->
+        return routeRepository.findRouteById(id)?.let { route ->
             NavigationLog(
                 id = id,
                 departurePort = route.departurePort,
@@ -49,10 +50,7 @@ class NavLogService(
                 averageMach = route.waypoints.averageMach(),
                 waypoints = route.waypoints.toWaypointDTOs(),
             )
-        }.orElseThrow {
-            LOG.info("Navigation data not found for $id")
-            ResourceNotFoundException("Navigation log not found for $id")
-        }
+        } ?: throw ResourceNotFoundException("Navigation log not found for $id")
     }
 
     fun processNavData(departurePort: String, arrivalPort: String, data: String): Long? {

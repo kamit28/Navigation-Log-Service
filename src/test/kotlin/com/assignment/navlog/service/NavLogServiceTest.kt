@@ -14,7 +14,6 @@ import org.testcontainers.shaded.org.bouncycastle.util.Strings
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Paths
-import java.util.*
 
 @ExtendWith(SpringExtension::class)
 internal class NavLogServiceTest {
@@ -53,7 +52,7 @@ internal class NavLogServiceTest {
     @Test
     fun `should get route for id`() {
         val route = dbResult[0]
-        every { routeRepository.findById(any()) } returns Optional.of(route)
+        every { routeRepository.findRouteById(any()) } returns route
 
         val result = navLogService.getNavLogFor(1)
 

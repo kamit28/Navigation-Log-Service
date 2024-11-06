@@ -59,7 +59,7 @@ internal class NavLogApplicationIntegTest {
             objectMapper!!.readerForListOf(NavigationLog::class.java).readValue(result.response.contentAsString)
         Assertions.assertNotNull(expected)
         Assertions.assertTrue(expected.isEmpty())
-        Assertions.assertEquals(expected.size, routeRepository?.findAll()!!.size)
+        Assertions.assertEquals(expected.size, routeRepository?.findAll()!!.count())
     }
 
     @Test
@@ -77,9 +77,9 @@ internal class NavLogApplicationIntegTest {
 
         val expected = routeRepository?.findAll()
         Assertions.assertNotNull(expected)
-        Assertions.assertEquals(1, expected!!.size)
-        Assertions.assertNotNull(expected[0].waypoints)
-        Assertions.assertEquals(2, expected[0].waypoints.size)
+        Assertions.assertEquals(1, expected!!.count())
+        Assertions.assertNotNull(expected.first().waypoints)
+        Assertions.assertEquals(2, expected.first().waypoints.size)
     }
 
     @Test
@@ -94,9 +94,9 @@ internal class NavLogApplicationIntegTest {
         val expected = routeRepository?.findAll()
         val str = objectMapper!!.writerWithDefaultPrettyPrinter().writeValueAsString(expected)
         Assertions.assertNotNull(expected)
-        Assertions.assertEquals(1, expected!!.size)
-        Assertions.assertNotNull(expected[0].waypoints)
-        Assertions.assertEquals(2, expected[0].waypoints.size)
+        Assertions.assertEquals(1, expected!!.count())
+        Assertions.assertNotNull(expected.first().waypoints)
+        Assertions.assertEquals(2, expected.first().waypoints.size)
     }
 
     @Test
@@ -142,10 +142,10 @@ internal class NavLogApplicationIntegTest {
 
         val expected = routeRepository?.findAll()
         Assertions.assertNotNull(expected)
-        Assertions.assertEquals(2, expected!!.size)
-        Assertions.assertNotNull(expected[1].waypoints)
-        Assertions.assertEquals(3, expected[1].waypoints.size)
-        Assertions.assertTrue(expected[1].waypoints[1].instruction!!.isNotBlank())
+        Assertions.assertEquals(2, expected!!.count())
+        Assertions.assertNotNull(expected.last().waypoints)
+        Assertions.assertEquals(3, expected.last().waypoints.size)
+        Assertions.assertTrue(expected.last().waypoints[1].instruction!!.isNotBlank())
     }
 
     @Test
