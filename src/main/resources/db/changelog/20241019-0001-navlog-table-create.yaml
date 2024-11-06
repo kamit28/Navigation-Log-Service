@@ -1,0 +1,105 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0001
+      author: "Amit"
+      changes:
+        - createTable:
+            tableName: routes
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  name: id
+                  type: INTEGER
+                  generationType: ALWAYS
+                  incrementBy: 1
+                  autoIncrement: true
+              - column:
+                  name: departure_port
+                  type: CHAR(4)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: arrival_port
+                  type: CHAR(4)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: waypoints
+            columns:
+              - column:
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  name: id
+                  type: INTEGER
+                  autoIncrement: true
+              - column:
+                  constraints:
+                    nullable: false
+                  name: route_id
+                  type: INTEGER
+              - column:
+                  name: name
+                  type: VARCHAR(7)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: safety_height
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: distance
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  constraints:
+                    nullable: false
+                  name: flight_level
+                  type: INTEGER
+              - column:
+                  name: eti
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ground_speed
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: mach
+                  type: NUMERIC(4,3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: wind_speed
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: wind_direction
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: instruction
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: true
+
+        - addForeignKeyConstraint:
+            baseColumnNames: route_id
+            baseTableName: waypoints
+            baseTableSchemaName: public
+            constraintName: fk_routes_waypoints
+            onDelete: CASCADE
+            onUpdate: RESTRICT
+            referencedColumnNames: id
+            referencedTableName: routes
+            referencedTableSchemaName: public
+            validate: true

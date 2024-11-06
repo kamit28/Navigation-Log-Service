@@ -1,0 +1,95 @@
+{
+  "id": 1,
+  "departurePort": "NDEL",
+  "arrivalPort": "YMML",
+  "totalFlightTime": "PT1H21M",
+  "totalDistance": 553,
+  "averageGroundSpeed": 401.7142857142857,
+  "averageMach": 0.6792857142857143,
+  "waypoints": [
+    {
+      "waypointName": "SYDNY",
+      "safetyHeight": 8200,
+      "distance": 47,
+      "flightLevel": 231,
+      "estimatedTimeInterval": "PT12M",
+      "groundSpeed": 413,
+      "mach": 0.676,
+      "windSpeed": 39,
+      "windDirection": 120,
+      "instruction": ""
+    },
+    {
+      "waypointName": "THROW",
+      "safetyHeight": 7600,
+      "distance": 22,
+      "flightLevel": 309,
+      "estimatedTimeInterval": "PT3M",
+      "groundSpeed": 455,
+      "mach": 0.776,
+      "windSpeed": 28,
+      "windDirection": 140,
+      "instruction": ""
+    },
+    {
+      "waypointName": "TOC",
+      "safetyHeight": 5800,
+      "distance": 23,
+      "flightLevel": 340,
+      "estimatedTimeInterval": "PT3M",
+      "groundSpeed": 442,
+      "mach": 0.789,
+      "windSpeed": 24,
+      "windDirection": 160,
+      "instruction": ""
+    },
+    {
+      "waypointName": "SHRMP",
+      "safetyHeight": 8500,
+      "distance": 17,
+      "flightLevel": 320,
+      "estimatedTimeInterval": "PT2M",
+      "groundSpeed": 442,
+      "mach": 0.78,
+      "windSpeed": 25,
+      "windDirection": 160,
+      "instruction": "INITIATE STEP CLIMB TO FL340 150 NM (20 MIN) PRIOR TO TOD"
+    },
+    {
+      "waypointName": "TOD",
+      "safetyHeight": 7700,
+      "distance": 388,
+      "flightLevel": 340,
+      "estimatedTimeInterval": "PT50M",
+      "groundSpeed": 442,
+      "mach": 0.78,
+      "windSpeed": 26,
+      "windDirection": 160,
+      "instruction": ""
+    },
+    {
+      "waypointName": "BARBI",
+      "safetyHeight": 6000,
+      "distance": 16,
+      "flightLevel": 149,
+      "estimatedTimeInterval": "PT3M",
+      "groundSpeed": 350,
+      "mach": 0.553,
+      "windSpeed": 8,
+      "windDirection": 150,
+      "instruction": ""
+    },
+    {
+      "waypointName": "YMML",
+      "safetyHeight": 5200,
+      "distance": 40,
+      "flightLevel": 19,
+      "estimatedTimeInterval": "PT8M",
+      "groundSpeed": 268,
+      "mach": 0.401,
+      "windSpeed": 5,
+      "windDirection": 80,
+      "instruction": ""
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[ {
+  "id" : 1,
+  "departurePort" : "ABCD",
+  "arrivalPort" : "PQRS",
+  "waypoints" : [ {
+    "id" : 1,
+    "name" : "SYDNY",
+    "safetyHeight" : 8200,
+    "distance" : 47,
+    "flightLevel" : 231,
+    "estimatedTimeInterval" : "PT12M",
+    "groundSpeed" : 413,
+    "mach" : 0.676,
+    "windSpeed" : 39,
+    "windDirection" : 120,
+    "instruction" : ""
+  }, {
+    "id" : 2,
+    "name" : "PQRS",
+    "safetyHeight" : 7600,
+    "distance" : 22,
+    "flightLevel" : 309,
+    "estimatedTimeInterval" : "PT3M",
+    "groundSpeed" : 455,
+    "mach" : 0.776,
+    "windSpeed" : 28,
+    "windDirection" : 140,
+    "instruction" : ""
+  } ]
+} ]

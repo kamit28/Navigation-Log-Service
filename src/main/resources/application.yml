@@ -1,0 +1,42 @@
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+  servlet:
+    context-path: /
+  tomcat:
+    basedir: .
+    accesslog:
+      directory: logs
+
+spring:
+  config:
+    activate:
+      on-profile: ${SPRING_PROFILES_ACTIVE:local}
+  datasource:
+    url: jdbc:postgresql://localhost:5432/navlog_db?sslmode=disable
+    username: root
+    password: secret
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+  jackson:
+    default-property-inclusion: NON_NULL
+    serialization:
+      write-dates-as-timestamps: false
+      fail-on-empty-beans: false
+    deserialization:
+      fail-on-unknown-properties: false
+
+logging:
+  pattern:
+    console: "%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n"
+    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+  level:
+    root: INFO
+    com.assignment.navlog: INFO
+    org.springframework.web: INFO
+    org:
+      hibernate.SQL: INFO

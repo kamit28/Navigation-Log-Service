@@ -1,0 +1,47 @@
+{
+  "id": 1,
+  "departurePort": "EFGH",
+  "arrivalPort": "PQRS",
+  "totalFlightTime": "PT17M",
+  "totalDistance": 86,
+  "averageGroundSpeed": 436.6666666666667,
+  "averageMach": 0.7440000000000001,
+  "waypoints": [
+    {
+      "waypointName": "SYDNY",
+      "safetyHeight": 8200,
+      "distance": 47,
+      "flightLevel": 231,
+      "estimatedTimeInterval": "PT12M",
+      "groundSpeed": 413,
+      "mach": 0.676,
+      "windSpeed": 39,
+      "windDirection": 120,
+      "instruction": ""
+    },
+    {
+      "waypointName": "SHRMP",
+      "safetyHeight": 8500,
+      "distance": 17,
+      "flightLevel": 320,
+      "estimatedTimeInterval": "PT2M",
+      "groundSpeed": 442,
+      "mach": 0.78,
+      "windSpeed": 25,
+      "windDirection": 160,
+      "instruction": "INITIATE STEP CLIMB TO FL340 150 NM (20 MIN) PRIOR TO TOD"
+    },
+    {
+      "waypointName": "PQRS",
+      "safetyHeight": 7600,
+      "distance": 22,
+      "flightLevel": 309,
+      "estimatedTimeInterval": "PT3M",
+      "groundSpeed": 455,
+      "mach": 0.776,
+      "windSpeed": 28,
+      "windDirection": 140,
+      "instruction": ""
+    }
+  ]
+}
