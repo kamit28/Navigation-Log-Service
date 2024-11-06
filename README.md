@@ -36,9 +36,6 @@ For example, if you are using docker:<br>
 __Docker run__
 
 <strong>Note:</strong> The tomcat port has been set to 8080. If you want to change that, edit the api port in docker-compose file.<br>
-> Build the Jar<br>
-``$ ./gradlew clean build``
-
 > To build containers and run them<br>
 ``$ docker compose up --build``
 

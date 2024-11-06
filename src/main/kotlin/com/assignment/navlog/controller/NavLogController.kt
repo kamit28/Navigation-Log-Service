@@ -16,7 +16,7 @@ class NavLogController(
     private val navLogService: NavLogService,
 ) {
     companion object {
-        var LOG: Logger = LoggerFactory.getLogger(NavLogController::class.java)
+        val LOG: Logger = LoggerFactory.getLogger(NavLogController::class.java)
     }
 
     @PostMapping(

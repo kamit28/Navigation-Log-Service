@@ -11,7 +11,6 @@ import com.assignment.navlog.utils.toISO8601Duration
 import com.assignment.navlog.utils.toInt
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import java.util.stream.Collectors
 import kotlin.time.Duration
 
 @Service
@@ -20,11 +19,11 @@ class NavLogService(
 ) {
 
     companion object {
-        val LOG = LoggerFactory.getLogger(NavLogService::class.java)
+        val LOG: Logger = LoggerFactory.getLogger(NavLogService::class.java)
     }
 
     fun getNavLogs(): List<NavigationLog> {
-        return routeRepository.findAll().stream().map { route ->
+        return routeRepository.findAll().map { route ->
             NavigationLog(
                 id = route.id!!,
                 departurePort = route.departurePort,
@@ -35,7 +34,7 @@ class NavLogService(
                 averageMach = route.waypoints.averageMach(),
                 waypoints = route.waypoints.toWaypointDTOs(),
             )
-        }.collect(Collectors.toList())
+        }
     }
 
     fun getNavLogFor(id: Long): NavigationLog {
@@ -67,21 +66,18 @@ class NavLogService(
 
             val savedEntity = routeRepository.save(newRoute)
             return savedEntity.id
-        } else {
-            LOG.error("arrivalPort is not same as last waypoint name")
-            throw IllegalArgumentException("arrivalPort is not same as last waypoint name")
         }
+        LOG.error("arrivalPort is not same as last waypoint name")
+        throw IllegalArgumentException("arrivalPort is not same as last waypoint name")
     }
 
-    fun deleteNavLogFor(id: Long) {
-        routeRepository.deleteById(id)
-    }
+    fun deleteNavLogFor(id: Long) = routeRepository.deleteById(id)
 
     private fun processWayPoints(data: String): List<Waypoint> {
         val lines = data.split("\n\n")
-        return lines.stream().skip(1).map {
+        return lines.drop(1).map {
             processLine(it)
-        }.collect(Collectors.toList())
+        }
     }
 
     private fun processLine(line: String): Waypoint {
@@ -110,8 +106,8 @@ class NavLogService(
     }
 }
 
-fun List<Waypoint>.toWaypointDTOs(): MutableList<WaypointDTO> =
-    this.stream().map { wp ->
+fun List<Waypoint>.toWaypointDTOs() =
+    this.map { wp ->
         WaypointDTO(
             waypointName = wp.name,
             safetyHeight = wp.safetyHeight,
@@ -124,18 +120,18 @@ fun List<Waypoint>.toWaypointDTOs(): MutableList<WaypointDTO> =
             mach = wp.mach,
             instruction = wp.instruction
         )
-    }.collect(Collectors.toList())
+    }
 
 fun List<Waypoint>.totalDistance(): Int =
-    this.stream().mapToInt { it.distance }.sum()
+    this.sumOf { it.distance }
 
 fun List<Waypoint>.totalFlightTime(): String =
-    this.stream().map { wp ->
+    this.map { wp ->
         Duration.parseIsoString(wp.estimatedTimeInterval)
-    }.reduce(Duration.ZERO, Duration::plus).toIsoString()
+    }.fold(Duration.ZERO) { sum, d -> sum.plus(d) }.toIsoString()
 
 fun List<Waypoint>.averageGroundSpeed(): Double =
-    this.stream().mapToInt { it.groundSpeed }.average().asDouble
+    this.map { it.groundSpeed }.average()
 
 fun List<Waypoint>.averageMach(): Double =
-    this.stream().mapToDouble { it.mach }.average().asDouble
+    this.map { it.mach }.average()
